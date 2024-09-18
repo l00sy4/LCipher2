@@ -166,7 +166,7 @@ unsigned long long stream()
 	return (unsigned long long)zh << 32 | zl;
 }
 
-void kcipher2_encrypt_decrypt(const unsigned char* in, const unsigned long len, unsigned char* out)
+void kcipher2_encrypt(const unsigned char* in, const unsigned long len, unsigned char* out)
 {
 	unsigned long long key_stream;
 	unsigned char*     stream_ptr = (unsigned char*)&key_stream;
