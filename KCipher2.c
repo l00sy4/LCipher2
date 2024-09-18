@@ -184,15 +184,12 @@ void kcipher2_encrypt(const unsigned char* in, const unsigned long len, unsigned
 
 	if (remaining_bytes > 0)
 	{
-		unsigned char* byte_buffer = (unsigned char*)&buffer[len / 8];
-		unsigned char* out_byte_buffer = (unsigned char*)&out_buffer[len / 8];
-
 		key_stream = stream();  
 		next(NORMAL);
 
-		for (unsigned long i = 0; i < remaining_bytes; i++)
+		for (unsigned long i = len - remaining_bytes; i < len; i++)
 		{
-			out_byte_buffer[i] = byte_buffer[i] ^ ((unsigned char*)&key_stream)[i];
+			out[i] = in[i] ^ ((unsigned char*)&key_stream)[i];
 		}
 	}
 }
