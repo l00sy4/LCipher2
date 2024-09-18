@@ -14,7 +14,7 @@ unsigned int iv[4] = ...;
 init(key, iv);
 ```
 
-Then, you can encrypt a buffer using `kcipher2_encrypt_decrypt`
+Then, you can encrypt a buffer using `kcipher2_encrypt`
 
 ```C
 unsigned char* text = "super secret";
