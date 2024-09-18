@@ -169,16 +169,30 @@ unsigned long long stream()
 void kcipher2_encrypt(const unsigned char* in, const unsigned long len, unsigned char* out)
 {
 	unsigned long long key_stream;
-	unsigned char*     stream_ptr = (unsigned char*)&key_stream;
+	unsigned long long* buffer     = (unsigned long long*)in;
+	unsigned long long* out_buffer = (unsigned long long*)out;
 
-	for(unsigned long i = 0; i < len; i++)
+	for (unsigned long i = 0; i < len / 8; i++)
 	{
-		if(i % 8 == 0)
-		{
-			key_stream = stream();
-			next(NORMAL);
-		}
+		key_stream = stream();
+		next(NORMAL);
 
-		out[i] = in[i] ^ stream_ptr[i % 8];
+		out_buffer[i] = buffer[i] ^ key_stream;
+	}
+
+	unsigned long remaining_bytes = len % 8;
+
+	if (remaining_bytes > 0)
+	{
+		unsigned char* byte_buffer = (unsigned char*)&buffer[len / 8];
+		unsigned char* out_byte_buffer = (unsigned char*)&out_buffer[len / 8];
+
+		key_stream = stream();  
+		next(NORMAL);
+
+		for (unsigned long i = 0; i < remaining_bytes; i++)
+		{
+			out_byte_buffer[i] = byte_buffer[i] ^ ((unsigned char*)&key_stream)[i];
+		}
 	}
 }
