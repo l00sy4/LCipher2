@@ -14,10 +14,10 @@ unsigned int iv[4] = ...;
 init(key, iv);
 ```
 
-Then, you can encrypt a buffer using `kcipher2_encrypt`
+Then, you can encrypt a buffer using `kcipher2_encrypt`. As KCipher2 is a stream cipher, the same function can be used for decryption.
 
 ```C
 unsigned char* text = "super secret";
 
-kcipher2_encrypt_decrypt(text, strlen(text), text); // Alternatively, output the encrypted buffer somewhere else
+kcipher2_encrypt(text, strlen(text), text); // Alternatively, output the encrypted buffer somewhere else
 ```
