@@ -2,11 +2,8 @@
 #include "KCipher2.h"
 
 // Shamelessly pasted
-void HexDump(
-    const char* desc,
-    const void* addr,
-    const int   len
-) {
+void HexDump(const char* desc, const void* addr, const int len) 
+{
     int i;
     int perLine = 16;
     unsigned char buff[17];
@@ -56,15 +53,15 @@ void HexDump(
 }
 
 /*
- *  Secret:
+ *  Original:
  *	  0000  4c 75 63 69 34 20 73 61 79 73 20 68 69 21 21 21  Luci4 says hi!!!
  * 	  0010  00                                               .
  *
- *	Secret:
+ *	Encrypted:
  *	  0000  3e 07 38 fd db cb 02 99 4e 76 df 75 fd 25 2d c5  >.8.....Nv.u.%-.
  *	  0010  57                                               W
  *
- *	Secret:
+ *	Decrypted:
  *	  0000  4c 75 63 69 34 20 73 61 79 73 20 68 69 21 21 21  Luci4 says hi!!!
  *	  0010  00                                               .
  */
@@ -74,21 +71,21 @@ int main()
     unsigned int  Iv[4]    = { 0 };
     unsigned char Secret[] = "Luci4 says hi!!!";
 
-    HexDump("Secret", Secret, sizeof(Secret));
+    HexDump("Original", Secret, sizeof(Secret));
     puts("");
 
     init(Key, Iv);
 
     kcipher2_encrypt(Secret, sizeof(Secret), Secret);
 
-    HexDump("Secret", Secret, sizeof(Secret));
+    HexDump("Encrypted", Secret, sizeof(Secret));
     puts("");
 
     init(Key, Iv);
 
     kcipher2_encrypt(Secret, sizeof(Secret), Secret);
 
-    HexDump("Secret", Secret, sizeof(Secret));
+    HexDump("Decrypted", Secret, sizeof(Secret));
     puts("");
 
 }
