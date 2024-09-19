@@ -21,3 +21,7 @@ unsigned char* text = "super secret";
 
 kcipher2_encrypt(text, strlen(text), text); // Alternatively, output the encrypted buffer somewhere else
 ```
+
+### Examples
+
+Check out the example folder
