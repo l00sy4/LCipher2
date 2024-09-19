@@ -15,7 +15,5 @@ extern unsigned int   IK[12];
 extern unsigned int   IV[4];
 extern kcipher2_state State;
 
-void               kcipher2_encrypt(unsigned char* in, unsigned long len, unsigned char* out);
-void               init(unsigned int* key, unsigned int* iv);
-void               next(unsigned char mode);
-unsigned long long stream();
+void kcipher2_encrypt(unsigned char* in, unsigned long len, unsigned char* out);
+void init(unsigned int* key, unsigned int* iv);
