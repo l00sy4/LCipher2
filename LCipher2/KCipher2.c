@@ -1,5 +1,5 @@
 #include "Tables.h"
-#include "Common.h"
+#include "KCipher2.h"
 
 unsigned int   IK[12];
 unsigned int   IV[4];
