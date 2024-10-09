@@ -11,9 +11,6 @@ typedef struct
 
 } kcipher2_state;
 
-extern unsigned int   IK[12];
-extern unsigned int   IV[4];
-extern kcipher2_state State;
-
-void kcipher2_encrypt(unsigned char* in, unsigned long len, unsigned char* out);
-void init(unsigned int* key, unsigned int* iv);
+void               kcipher2_encrypt(kcipher2_state state, unsigned char* in, const unsigned long len, unsigned char* out, const unsigned int* Key, const unsigned int* Iv);
+kcipher2_state	   next(unsigned char mode, kcipher2_state state);
+unsigned long long stream(kcipher2_state state);

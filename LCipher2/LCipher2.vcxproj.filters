@@ -18,9 +18,6 @@
     <ClInclude Include="Tables.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Common.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="KCipher2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
